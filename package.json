@@ -1,0 +1,27 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "setup": "yarn",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/crypto-js": "^4.1.0",
+    "@types/ioredis": "^4.28.8",
+    "@types/redis": "^4.0.11",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@socket.io/redis-adapter": "^7.1.0",
+    "@socket.io/sticky": "^1.0.1",
+    "ioredis": "^4.28.5",
+    "redis": "^4.0.3",
+    "socket.io": "^4.4.1",
+    "ts-node": "^10.4.0"
+  }
+}
