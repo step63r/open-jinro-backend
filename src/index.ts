@@ -37,7 +37,6 @@ const pubClient = new Redis({
 const subClient = pubClient.duplicate();
 io.adapter(createAdapter(pubClient, subClient));
 
-// あとでRedisにブチ込む
 const roomStore = new RedisRoomStore(pubClient);
 const userStore = new RedisUserStore(pubClient);
 
@@ -518,4 +517,4 @@ io.on('connection', (socket: socketio.Socket) => {
 });
 
 io.listen(typeof PORT === 'string' ? parseInt(PORT) : PORT);
-console.log(`server is listening on port 3000.`);
+console.log(`server is listening on port ${PORT}.`);
