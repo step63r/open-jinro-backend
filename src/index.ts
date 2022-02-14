@@ -15,14 +15,25 @@ const HUMAN_WIN = 'HumanWin';
 const WOLVES_WIN = 'WolvesWin';
 const CONTINUE_GAME = 'ContinueGame';
 
+const PORT = process.env.PORT || 3000;
+
+const REDIS_HOST = process.env.REDIS_HOST || 'localhost';
+const REDIS_PORT = process.env.REDIS_PORT || 6379;
+
+const CORS_HOST = process.env.CORS_HOST || 'localhost';
+const CORS_PORT = process.env.CORS_PORT || 3000;
+
 const io = new Server({
   cors: {
-    origin: 'http://localhost:3001',
+    origin: `http://${CORS_HOST}:${CORS_PORT}`,
     methods: ['GET', 'POST'],
   },
 });
 
-const pubClient = new Redis({ host: 'localhost', port: 6379 });
+const pubClient = new Redis({
+  host: REDIS_HOST,
+  port: typeof REDIS_PORT === 'string' ? parseInt(REDIS_PORT) : REDIS_PORT
+});
 const subClient = pubClient.duplicate();
 io.adapter(createAdapter(pubClient, subClient));
 
@@ -506,5 +517,5 @@ io.on('connection', (socket: socketio.Socket) => {
   });
 });
 
-io.listen(3000);
+io.listen(typeof PORT === 'string' ? parseInt(PORT) : PORT);
 console.log(`server is listening on port 3000.`);
